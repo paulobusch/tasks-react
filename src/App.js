@@ -1,10 +1,14 @@
 import React from 'react';
 
-import Login from './views/login';
+import Login from './auth/login';
+import { Provider } from 'react-redux';
+import store from './store';
 
 function App() {
   return (
-    <Login />
+    <Provider store={ store }>
+      <Login />
+    </Provider>
   );
 }
 

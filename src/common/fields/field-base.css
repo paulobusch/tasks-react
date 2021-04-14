@@ -1,0 +1,15 @@
+.field-with-icon {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.field-with-icon .form-control {
+  padding-left: 40px;
+}
+
+.field-with-icon i {
+  cursor: pointer;
+  position: absolute;
+  left: 15px;
+}
