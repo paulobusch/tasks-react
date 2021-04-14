@@ -1,10 +1,11 @@
 import React from 'react';
+import Layout from '../../layout';
 
 function Dashboard() {
   return (
-    <div>
+    <Layout>
       Dashboard
-    </div>
+    </Layout>
   );
 }
 

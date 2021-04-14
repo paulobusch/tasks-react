@@ -23,7 +23,9 @@ export function listenSessionChanged() {
 export function login(values) {
   return () => {
     firebaseInstance.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
-    firebaseInstance.auth().signInWithEmailAndPassword(values.email, values.password).then()
+    firebaseInstance.auth().signInWithEmailAndPassword(values.email, values.password).then(() => {
+      window.location.href = '/';
+    })
     .catch(e => {
       toastr.error('Erro', 'Usuário/Senha inválidos');
     });

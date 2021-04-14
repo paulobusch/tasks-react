@@ -1,0 +1,10 @@
+#logout {
+  font-size: 25px;
+  color: white;
+  cursor: pointer;
+  transition: .2s;
+}
+
+#logout:hover {
+  color: rgba(255, 255, 255, 0.753);
+}
