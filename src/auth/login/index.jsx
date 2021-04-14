@@ -7,17 +7,13 @@ import { connect } from 'react-redux';
 
 import Input from '../../common/fields/input';
 import Toastr from '../../common/messages/toastr';
-import email from './../../common/validators/email';
-import { login, listenSessionChanged } from '../../store/auth/AuthActions';
+import email from '../../common/validators/email';
+import { login } from '../../store/auth/AuthActions';
 
 class LoginForm extends Component {
   isValid() {
     const emailError = email(this.props.email);
     return this.props.email && !emailError && this.props.password;
-  }
-
-  componentWillMount() {
-    this.props.listenSessionChanged();
   }
 
   render() {    
@@ -53,5 +49,5 @@ const mapStateToProps = state => ({
   email: selector(state, 'email'), 
   password: selector(state, 'password') 
 });
-const mapDispatchToProps = dispatch => bindActionCreators({ login, listenSessionChanged }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ login }, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(loginForm);

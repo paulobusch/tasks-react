@@ -13,7 +13,7 @@ export function listenSessionChanged() {
           dispatch({ type: LOGIN, payload: { id: user.uid, email: user.email } }); 
         } else {
           dispatch({ type: LOGOUT });
-          window.location.href = '/';
+          window.location.href = '/login';
         }        
       }
     );
