@@ -21,9 +21,9 @@ class Layout extends Component {
     if (!user) return <Redirect to="/login"/>;
     
     return (
-      <div className="container-tasks container-fluid">
+      <div className="container-tasks">
         <Header logout={ this.props.logout }/>
-        <div className="row">
+        <div className="d-flex">
           <Sidenav />
           <Content>
             { this.props.children }

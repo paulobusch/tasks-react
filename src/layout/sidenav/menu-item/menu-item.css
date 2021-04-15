@@ -1,0 +1,20 @@
+#menu .nav-link {
+  transition: .2s;
+  display: flex;
+  align-items: center;
+  border-left: 8px solid rgba(0, 0, 0, 0.253);
+}
+
+#menu .nav-link.active {
+  border-left: 8px solid blue;
+  background-color: rgba(43, 43, 195, 0.11);
+}
+
+#menu .nav-link:hover {
+  background-color: rgba(0, 0, 0, 0.068);
+}
+
+#menu i {
+  font-size: 25px;
+  padding: 8px;
+}

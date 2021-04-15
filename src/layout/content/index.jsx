@@ -1,8 +1,10 @@
+import './content.css';
+
 import React from 'react';
 
 function Content(props) {
   return (
-    <main>
+    <main className="content">
       { props.children }
     </main>
   );
