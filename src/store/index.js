@@ -7,11 +7,13 @@ import promise from 'redux-promise';
 import thunk from 'redux-thunk';
 
 import authReducer from './auth/AuthReducer';
+import TypesReducer from './types/TypesReducer';
 
 const store = combineReducers({
   toastr: toastrReducer,
   form: formReducer,
-  auth: authReducer
+  auth: authReducer,
+  types: TypesReducer
 });
 
 export default applyMiddleware(thunk, promise)(createStore)(store);

@@ -6,6 +6,7 @@ import Login from './auth/login';
 import store from './store';
 import Dashboard from './pages/dashboard/index';
 import Blank from './pages/blank';
+import TypeList from './pages/types/type-list/index';
 
 export default function App() {
   return (
@@ -14,7 +15,7 @@ export default function App() {
         <Route exact path="/login" component={ Login }/>
         <Route exact path="/dashboard" component={ Dashboard }/>
         <Route exact path="/ranking" component={ Blank }/>
-        <Route exact path="/types" component={ Blank }/>
+        <Route exact path="/types" component={ TypeList }/>
         <Route exact path="/tasks" component={ Blank }/>
         <Route exact path="/" render={ () => <Redirect to="/dashboard"/> }/>
       </Router>
