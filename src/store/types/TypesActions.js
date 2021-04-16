@@ -1,7 +1,7 @@
 import { toastr } from 'react-redux-toastr';
 import 'firebase/firestore';
 
-import { TYPE_FETCHED } from './TypesActionsTypes';
+import { TYPE_FETCHED, TYPE_DELETED } from './TypesActionsTypes';
 import firebaseInstance from '../../firebase/index';
 
 const collection = firebaseInstance.firestore().collection('types');
@@ -21,3 +21,15 @@ export function getAll(completed) {
   };
 }
 
+export function remove(id, completed) {
+  return dispatch => {
+    collection.doc(id).delete().then(doc => {
+      dispatch({ type: TYPE_DELETED, payload: id });
+      if (completed) completed(true);
+    })
+    .catch(() => {
+      toastr.error('Erro', `Falha ao remover tipo!`);
+      if (completed) completed(false);
+    });
+  };
+}
