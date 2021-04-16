@@ -1,5 +1,5 @@
 import React from 'react';
-import FieldBase from './../field-base';
+import FieldBase from '../field-base';
 
 export default class Input extends FieldBase {
   field() {
@@ -7,6 +7,7 @@ export default class Input extends FieldBase {
 
     return (
       <input { ...input }
+        id={ input.id ?? input.name }
         className="form-control"
         disabled={ readOnly } 
         placeholder={ placeholder } 

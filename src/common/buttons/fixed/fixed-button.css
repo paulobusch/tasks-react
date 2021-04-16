@@ -1,0 +1,22 @@
+.fixed-button {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  width: 25px;
+  height: 25px;
+  color: white;
+  position: fixed;
+  right: 50px;
+  bottom: 50px;
+  opacity: .8;
+  border-radius: 50%;
+  font-size: 30px;
+  padding: 25px;
+  transition: .2s;
+  cursor: pointer;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.212);
+}
+
+.fixed-button:hover {
+  opacity: 1;
+}

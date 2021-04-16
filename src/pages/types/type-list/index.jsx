@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { withRouter } from 'react-router';
 
 import { getAll, remove } from '../../../store/types/TypesActions';
 import ListBase from '../../../common/list-base';
@@ -30,4 +29,4 @@ class TypeList extends ListBase {
 
 const mapStateToProps = state => ({ types: state.types });
 const mapDispatchToProps = dispatch => bindActionCreators({ getAll, remove }, dispatch);
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(TypeList));
+export default connect(mapStateToProps, mapDispatchToProps)(TypeList);

@@ -14,9 +14,9 @@ export default class FieldBase extends Component {
   }
 
   label() {
-    const { label, id, name } = this.props;
+    const { label, input } = this.props;
     if (!label) return false;
-    return <label className="control-label" htmlFor={ id ?? name }>{ label }</label>;
+    return <label className="control-label" htmlFor={ input.id ?? input.name }>{ label }</label>;
   }
 
   errors() {

@@ -14,7 +14,7 @@ export default class Table extends Component {
       return <Message message={ this.props.emptyMessage || 'Nenhum registro encontrado' } />;
 
     return (
-      <table className="table table-bordered table-hover">
+      <table className="table table-bordered table-hover m-0">
         <thead>
           { this.getColumnHeaders() }
         </thead>

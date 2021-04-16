@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 import Table from '../../common/table';
 import Layout from './../../layout/index';
 import Modal from './../modal';
+import FixedButton from '../buttons/fixed';
 
 const INITIAL_STATE = { loading: true, loadingRemove: false, selected: null, showConfirmRemove: false };
 
@@ -16,6 +17,41 @@ export default class ListBase extends Component {
     this.closeModal = this.closeModal.bind(this);
     this.afterRemove = this.afterRemove.bind(this);
     this.afterLoad = this.afterLoad.bind(this);
+    this.goNew = this.goNew.bind(this);
+  }
+
+  configure() { }
+  
+  getList() { }
+
+  render() {
+    this.configure();
+    const list = this.getList();
+    const modalActions = [
+      { text: 'CANCELAR', style: 'secondary', click: this.closeModal.bind(this) },
+      { text: 'REMOVER', style: 'danger', loading: this.state.loadingRemove, click: this.confirmRemove.bind(this) }
+    ];
+    return (
+      <Layout>
+        <div className="card">
+          <div className="card-header">
+            <h3 className="h3 m-0">{ this.title }</h3>
+          </div>
+          <div className="card-body p-0">
+            <Table loading={ this.state.loading }
+              rows={ list } columns={ this.tableColumns } actions={ this.tableActions }
+            />
+          </div>
+        </div>
+        <Modal title="Confirmação" 
+          actions={ modalActions } show={ this.state.showConfirmRemove } 
+          onClose={ this.closeModal }
+        >
+          Deseja realmente remover o registro?
+        </Modal>
+        <FixedButton title="Cadastrar" onClick={ this.goNew } icon="fas fa-plus"/>
+      </Layout>
+    );    
   }
 
   componentWillMount() {
@@ -68,30 +104,9 @@ export default class ListBase extends Component {
     });
   }
 
-  configure() { }
-  
-  getList() { }
-
-  render() {
-    this.configure();
-    const list = this.getList();
-    const modalActions = [
-      { text: 'CANCELAR', style: 'secondary', click: this.closeModal.bind(this) },
-      { text: 'REMOVER', style: 'danger', loading: this.state.loadingRemove, click: this.confirmRemove.bind(this) }
-    ];
-    return (
-      <Layout>
-        <h2 className="border-bottom pb-3">{ this.title }</h2>
-        <Table loading={ this.state.loading }
-          rows={ list } columns={ this.tableColumns } actions={ this.tableActions }
-        />
-        <Modal title="Confirmação" 
-          actions={ modalActions } show={ this.state.showConfirmRemove } 
-          onClose={ this.closeModal }
-        >
-          Deseja realmente remover o registro?
-        </Modal>
-      </Layout>
-    );    
+  goNew() {
+    const { history, location } = this.props;
+    const url = `${location.pathname}/new`;
+    history.push(url);
   }
 }
