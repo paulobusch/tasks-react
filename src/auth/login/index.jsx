@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import Input from '../../common/fields/input';
 import Toastr from '../../common/messages/toastr';
 import email from '../../common/validators/email';
-import { login } from '../../store/auth/AuthActions';
+import { login } from '../../store/auth/auth-actions';
 
 class LoginForm extends Component {
   isValid() {

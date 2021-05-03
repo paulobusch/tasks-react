@@ -6,8 +6,8 @@ import { createStore } from 'redux';
 import promise from 'redux-promise';
 import thunk from 'redux-thunk';
 
-import authReducer from './auth/AuthReducer';
-import TypesReducer from './types/TypesReducer';
+import authReducer from './auth/auth-reducer';
+import TypesReducer from './types/type-reducer';
 
 const store = combineReducers({
   toastr: toastrReducer,

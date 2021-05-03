@@ -6,7 +6,7 @@ export default function FixedButton(props) {
   return (
     <i className={ `fixed-button ${props.icon}` } 
       title={ props.title } onClick={ props.onClick } 
-      style={ { backgroundColor: props.color ?? 'blue' } }
+      style={ { backgroundColor: props.color ?? 'var(--primary)' } }
     >
     </i>
   );

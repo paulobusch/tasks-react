@@ -36,9 +36,6 @@ export default class FormBase extends Component {
   }
 
   goBack() {
-    const { history, location } = this.props;
-    const { pathname } = location;
-    const url = pathname.substring(0, pathname.search(/\/edit\/|\/new/));
-    history.push(url);
+    this.props.history.goBack();
   }
 }

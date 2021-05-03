@@ -8,7 +8,7 @@ import Header from './header';
 import Content from './content';
 import Sidenav from './sidenav';
 import { bindActionCreators } from 'redux';
-import { listenSessionChanged, logout } from './../store/auth/AuthActions';
+import { listenSessionChanged, logout } from '../store/auth/auth-actions';
 
 class Layout extends Component {
   componentWillMount() {

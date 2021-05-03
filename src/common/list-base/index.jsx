@@ -24,6 +24,10 @@ export default class ListBase extends Component {
   
   getList() { }
 
+  componentWillMount() {
+    this.refresh();
+  }
+
   render() {
     this.configure();
     const list = this.getList();
@@ -54,9 +58,9 @@ export default class ListBase extends Component {
     );    
   }
 
-  componentWillMount() {
+  refresh() {
     this.toggleLoading(true);
-    this.props.getAll(this.afterLoad);
+    this.props.getAll(this.filter, this.afterLoad);
   }
 
   afterLoad(success) {
@@ -65,7 +69,7 @@ export default class ListBase extends Component {
 
   confirmRemove() {
     this.toggleLoadingRemove(true);
-    this.props.remove(this.state.selected.id, this.afterRemove);
+    this.props.remove(this.state.selected, this.afterRemove);
   }
   
   afterRemove(success) {

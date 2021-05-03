@@ -3,7 +3,7 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 
 import firebaseInstance from '../../firebase';
-import { LOGIN, LOGOUT, LOADING } from './AuthActionTypes';
+import { LOGIN, LOGOUT, LOADING } from './auth-action-types';
 
 export function listenSessionChanged() {
   return dispatch => {

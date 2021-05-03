@@ -2,6 +2,7 @@ import React from 'react';
 import { Form, Field, reduxForm } from 'redux-form';
 import Input from '../../../common/fields/input';
 import FormBase from '../../../common/form-base/index';
+import required from './../../../common/validators/required';
 
 class TypeForm extends FormBase {
   configure() {
@@ -11,7 +12,8 @@ class TypeForm extends FormBase {
   form() {
     return (      
       <Form onSubmit={ () => {} } id="login-form" className="needs-validation">
-        <Field component={ Input } type="text" name="name" label="Nome:" placeholder="Tipo de Tarefa"/>
+        <Field type="text" name="name" label="Nome:" placeholder="Informe o nome"
+          component={ Input } validate={ required }/>
       </Form>
     );
   }

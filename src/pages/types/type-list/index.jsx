@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { getAll, remove } from '../../../store/types/TypesActions';
+import { getAll, remove } from '../../../store/types/type-actions';
 import ListBase from '../../../common/list-base';
 
 class TypeList extends ListBase {
@@ -17,8 +17,7 @@ class TypeList extends ListBase {
       { icon: 'trash-alt', title: 'Remover', color: 'red', click: this.remove.bind(this) }
     ];
     this.tableColumns = [
-      { prop: 'id', label: 'ID', flex: 10 },
-      { prop: 'name', label: 'Nome', flex: 90 }
+      { prop: 'name', label: 'Nome', flex: 100 }
     ];
   }
   

@@ -1,11 +1,11 @@
-import { LOGIN, LOGOUT, LOADING } from './AuthActionTypes';
+import { LOGIN, LOGOUT, LOADING } from './auth-action-types';
 
 const INITIAL_STATE = {
   user: null, 
   loading: true
 };
 
-export default function authReducer(state = INITIAL_STATE, action) {
+export default function AuthReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case LOADING:
       return { ...state, loading: true };
