@@ -7,7 +7,7 @@ import Layout from './../../layout/index';
 import Modal from './../modal';
 import FixedButton from '../buttons/fixed';
 
-const INITIAL_STATE = { loading: true, loadingRemove: false, selected: null, showConfirmRemove: false };
+const INITIAL_STATE = { loading: false, loadingRemove: false, selected: null, showConfirmRemove: false };
 
 export default class ListBase extends Component {
   constructor(props) {
@@ -18,19 +18,19 @@ export default class ListBase extends Component {
     this.afterRemove = this.afterRemove.bind(this);
     this.afterLoad = this.afterLoad.bind(this);
     this.goNew = this.goNew.bind(this);
+    this.goEdit = this.goEdit.bind(this);
   }
 
   configure() { }
-  
-  getList() { }
 
   componentWillMount() {
+    if (this.props.list) return; 
     this.refresh();
   }
 
   render() {
     this.configure();
-    const list = this.getList();
+    const list = this.props.list;
     const modalActions = [
       { text: 'CANCELAR', style: 'secondary', click: this.closeModal.bind(this) },
       { text: 'REMOVER', style: 'danger', loading: this.state.loadingRemove, click: this.confirmRemove.bind(this) }
@@ -42,7 +42,7 @@ export default class ListBase extends Component {
             <h3 className="h3 m-0">{ this.title }</h3>
           </div>
           <div className="card-body p-0">
-            <Table loading={ this.state.loading }
+            <Table loading={ this.state.loading } rowClick={ row => this.goEdit(row.id) }
               rows={ list } columns={ this.tableColumns } actions={ this.tableActions }
             />
           </div>
@@ -111,6 +111,12 @@ export default class ListBase extends Component {
   goNew() {
     const { history, location } = this.props;
     const url = `${location.pathname}/new`;
+    history.push(url);
+  }
+
+  goEdit(id) {
+    const { history, location } = this.props;
+    const url = `${location.pathname}/edit/${id}`;
     history.push(url);
   }
 }

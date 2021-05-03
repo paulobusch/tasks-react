@@ -1,22 +1,29 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import { bindActionCreators } from 'redux';
 import { Form, Field, reduxForm } from 'redux-form';
 import Input from '../../../common/fields/input';
 import FormBase from '../../../common/form-base/index';
 import required from './../../../common/validators/required';
+import { create, update, loadForm, submitForm } from './../../../store/types/type-actions';
+import { connect } from 'react-redux';
 
 class TypeForm extends FormBase {
   configure() {
-    this.createMessage = 'Cadastro de Tipo';
+    this.formId = 'login-form';
+    this.createTitle = 'Cadastro de Tipo';
+    this.updateTitle = 'Edição de Tipo';
   }
 
-  form() {
-    return (      
-      <Form onSubmit={ () => {} } id="login-form" className="needs-validation">
+  fields() {
+    return ( 
+      <Fragment>
         <Field type="text" name="name" label="Nome:" placeholder="Informe o nome"
           component={ Input } validate={ required }/>
-      </Form>
+      </Fragment>     
     );
   }
 }
 
-export default reduxForm({ form: 'type-form' })(TypeForm);
+const form = reduxForm({ form: 'type-form' })(TypeForm);
+const mapDispatchToProps = dispatch => bindActionCreators({ create, update, submitForm, loadForm }, dispatch);
+export default connect(null, mapDispatchToProps)(form);

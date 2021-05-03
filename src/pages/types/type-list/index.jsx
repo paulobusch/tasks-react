@@ -20,12 +20,8 @@ class TypeList extends ListBase {
       { prop: 'name', label: 'Nome', flex: 100 }
     ];
   }
-  
-  getList() {
-    return this.props.types;
-  }
 }
 
-const mapStateToProps = state => ({ types: state.types });
+const mapStateToProps = state => ({ list: state.types });
 const mapDispatchToProps = dispatch => bindActionCreators({ getAll, remove }, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(TypeList);

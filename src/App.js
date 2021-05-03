@@ -18,6 +18,7 @@ export default function App() {
         <Route exact path="/ranking" component={ Blank }/>
         <Route exact path="/types" component={ TypeList }/>
         <Route exact path="/types/new" component={ TypeForm }/>
+        <Route exact path="/types/edit/:id" component={ TypeForm }/>
         <Route exact path="/tasks" component={ Blank }/>
         <Route exact path="/" render={ () => <Redirect to="/dashboard"/> }/>
       </Router>

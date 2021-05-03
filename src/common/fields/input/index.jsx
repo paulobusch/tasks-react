@@ -8,7 +8,7 @@ export default class Input extends FieldBase {
     return (
       <input { ...input }
         id={ input.id ?? input.name }
-        className="form-control"
+        className={ this.getFieldClasses() }
         disabled={ readOnly } 
         placeholder={ placeholder } 
         type={ type }>

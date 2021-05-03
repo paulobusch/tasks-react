@@ -8,7 +8,7 @@ export default function Action(props) {
       onClick={ props.onClick } 
       disabled={ props.loading }
       className={ `btn-with-spinner btn btn-${ props.style ? props.style  : 'secondary' }` }>
-      { props.loading && <><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>&nbsp;</> }
+      { props.loading && <><span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>&nbsp;</> }
       { props.text }
     </button>
   );

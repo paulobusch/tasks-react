@@ -21,8 +21,15 @@ export default class FieldBase extends Component {
 
   errors() {
     const { meta: { touched, error } } = this.props;
-    if (!touched || !error) return false;
-    return <div className="invalid-feedback">{ error }</div>
+    if(!touched || !error) return;
+    return <div className="invalid-feedback">{ this.props.meta.error }</div>
+  }
+
+  getFieldClasses() {
+    const classes = ['form-control'];
+    if (this.props.meta.touched)
+      classes.push(this.props.meta.error ? 'is-invalid' : 'is-valid');
+    return classes.join(' ');
   }
 
   fieldWrapper() {
