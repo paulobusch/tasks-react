@@ -9,13 +9,15 @@ import thunk from 'redux-thunk';
 import authReducer from './auth/auth-reducer';
 import TypesReducer from './types/type-reducer';
 import ProjectsReducer from './projects/project-reducer';
+import TasksReducer from './tasks/task-reducer';
 
 const store = combineReducers({
   toastr: toastrReducer,
   form: formReducer,
   auth: authReducer,
   types: TypesReducer,
-  projects: ProjectsReducer
+  projects: ProjectsReducer,
+  tasks: TasksReducer
 });
 
 export default applyMiddleware(thunk, promise)(createStore)(store);

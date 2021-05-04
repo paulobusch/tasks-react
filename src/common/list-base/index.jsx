@@ -43,7 +43,7 @@ export default class ListBase extends Component {
           </div>
           <div className="card-body p-0">
             <Table loading={ this.state.loading } rowClick={ row => this.goEdit(row.id) }
-              rows={ list } columns={ this.tableColumns } actions={ this.tableActions }
+              rows={ list } columns={ this.tableColumns } actions={ this.tableActions } actionsCount={ this.actionsCount }
             />
           </div>
         </div>

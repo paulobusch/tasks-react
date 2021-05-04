@@ -3,3 +3,14 @@
   cursor: pointer;
   padding: 0 15px;
 }
+
+th.header-actions {
+  display: block;
+  text-align: center;
+}
+
+td.cell-actions {
+  height: 50px;
+  display: flex;
+  justify-content: space-around;
+}

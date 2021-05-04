@@ -26,7 +26,7 @@ export default class Table extends Component {
   }
   
   getColumnHeaders() {
-    const { columns, flexAction } = this.props;
+    const { columns, actions, actionsCount } = this.props;
     if (!columns || !Array.isArray(columns)) return false;
     const heads = columns.map(c => 
       <th 
@@ -36,7 +36,8 @@ export default class Table extends Component {
       { c.label }
       </th>
     );
-    if (this.hasActions()) heads.push(<th key="actions" style={ { width: `${flexAction || 2 }%` } }>Ações</th>);
+    if (this.hasActions()) heads.push(<th key="actions" className="header-actions" 
+      style={ { width: `${(actionsCount || actions.length) * 75 }px` } }>Ações</th>);
     return <tr>{ heads }</tr>;
   }
 
@@ -59,8 +60,10 @@ export default class Table extends Component {
     if (!this.hasActions()) return false;
     const { actions } = this.props;
     return (
-      <td>
-        { actions.map(a => <Action 
+      <td className="cell-actions">
+        { actions
+          .filter(a => !a.show || a.show(row))
+          .map(a => <Action 
             key={ a.icon || a.title } 
             color={ a.color }
             icon={ a.icon } title={ a.title } 
