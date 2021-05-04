@@ -1,0 +1,3 @@
+export const TASK_PLANNED = 'TASK_PLANNED';
+export const TASK_WORKING = 'TASK_WORKING';
+export const TASK_FINISHED = 'TASK_FINISHED';

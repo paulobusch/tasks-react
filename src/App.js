@@ -8,6 +8,7 @@ import Dashboard from './pages/dashboard/index';
 import Blank from './pages/blank';
 import TypeList from './pages/types/type-list/index';
 import TypeForm from './pages/types/type-form/index';
+import ProjectList from './pages/projects/project-form/index';
 
 export default function App() {
   return (
@@ -16,10 +17,11 @@ export default function App() {
         <Route exact path="/login" component={ Login }/>
         <Route exact path="/dashboard" component={ Dashboard }/>
         <Route exact path="/ranking" component={ Blank }/>
+        <Route exact path="/tasks" component={ Blank }/>
         <Route exact path="/types" component={ TypeList }/>
         <Route exact path="/types/new" component={ TypeForm }/>
         <Route exact path="/types/edit/:id" component={ TypeForm }/>
-        <Route exact path="/tasks" component={ Blank }/>
+        <Route exact path="/projects" component={ ProjectList }/>
         <Route exact path="/" render={ () => <Redirect to="/dashboard"/> }/>
       </Router>
     </Provider>

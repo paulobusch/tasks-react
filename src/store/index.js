@@ -8,12 +8,14 @@ import thunk from 'redux-thunk';
 
 import authReducer from './auth/auth-reducer';
 import TypesReducer from './types/type-reducer';
+import ProjectsReducer from './projects/project-reducer';
 
 const store = combineReducers({
   toastr: toastrReducer,
   form: formReducer,
   auth: authReducer,
-  types: TypesReducer
+  types: TypesReducer,
+  projects: ProjectsReducer
 });
 
 export default applyMiddleware(thunk, promise)(createStore)(store);

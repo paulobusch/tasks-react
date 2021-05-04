@@ -11,8 +11,9 @@ function Sidenav() {
         <Menu>
           <MenuItem to="/dashboard" icon="fas fa-home">Dashboard</MenuItem>
           <MenuItem to="/ranking" icon="fas fa-crosshairs">Ranking</MenuItem>
-          <MenuItem to="/types" icon="fas fa-layer-group">Tipos</MenuItem>
           <MenuItem to="/tasks" icon="fas fa-tasks">Tarefas</MenuItem>
+          <MenuItem to="/types" icon="fas fa-layer-group">Tipos</MenuItem>
+          <MenuItem to="/projects" icon="fas fa-sitemap">Projetos</MenuItem>
         </Menu>
       </div>
     </nav>
