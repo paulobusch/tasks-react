@@ -3,9 +3,12 @@ import './field-base.css';
 import React, { Component } from 'react';
 
 export default class FieldBase extends Component {
+
+  field() {}
+
   render() {
     return (
-      <div className="form-group">
+      <div className={ `form-group${ this.props.className ? ` ${this.props.className}` : '' }` }>
         { this.label() }
         { this.fieldWrapper() }
         { this.errors() }
@@ -44,5 +47,7 @@ export default class FieldBase extends Component {
     );
   }
 
-  field() {}
+  isRequired() {
+    return this.props.meta.error === 'O campo é obrigatório';
+  }
 }

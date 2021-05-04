@@ -8,8 +8,9 @@ export default class Input extends FieldBase {
     return (
       <input { ...input }
         id={ input.id ?? input.name }
+        required={ this.isRequired() }
         className={ this.getFieldClasses() }
-        disabled={ readOnly } 
+        disabled={ readOnly }
         placeholder={ placeholder } 
         type={ type }>
       </input>

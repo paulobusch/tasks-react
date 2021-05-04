@@ -6,6 +6,7 @@ import FormBase from '../../../common/form-base/index';
 import required from './../../../common/validators/required';
 import { create, update, loadForm, submitForm } from './../../../store/types/type-actions';
 import { connect } from 'react-redux';
+import Checkbox from './../../../common/fields/checkbox/index';
 
 class TypeForm extends FormBase {
   configure() {
@@ -16,10 +17,12 @@ class TypeForm extends FormBase {
 
   fields() {
     return ( 
-      <Fragment>
+      <div className="row">
         <Field type="text" name="name" label="Nome:" placeholder="Informe o nome"
-          component={ Input } validate={ required }/>
-      </Fragment>     
+          className="col-sm-12 col-md-6" component={ Input } validate={ required }/>
+        <Field type="checkbox" name="descriptionRequired" label="Descrição Obrigatória"
+          className="col-sm-12 col-md-6" component={ Checkbox }/>
+      </div>     
     );
   }
 }
