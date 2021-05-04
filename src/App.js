@@ -8,7 +8,8 @@ import Dashboard from './pages/dashboard/index';
 import Blank from './pages/blank';
 import TypeList from './pages/types/type-list/index';
 import TypeForm from './pages/types/type-form/index';
-import ProjectList from './pages/projects/project-form/index';
+import ProjectList from './pages/projects/project-list/index';
+import ProjectForm from './pages/projects/project-form/index';
 
 export default function App() {
   return (
@@ -22,6 +23,8 @@ export default function App() {
         <Route exact path="/types/new" component={ TypeForm }/>
         <Route exact path="/types/edit/:id" component={ TypeForm }/>
         <Route exact path="/projects" component={ ProjectList }/>
+        <Route exact path="/projects/new" component={ ProjectForm }/>
+        <Route exact path="/projects/edit/:id" component={ ProjectForm }/>
         <Route exact path="/" render={ () => <Redirect to="/dashboard"/> }/>
       </Router>
     </Provider>

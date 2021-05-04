@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { bindActionCreators } from 'redux';
-import { Form, Field, reduxForm } from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
 import Input from '../../../common/fields/input';
 import FormBase from '../../../common/form-base/index';
 import required from './../../../common/validators/required';
@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 
 class TypeForm extends FormBase {
   configure() {
-    this.formId = 'login-form';
+    this.formId = 'type-form';
     this.createTitle = 'Cadastro de Tipo';
     this.updateTitle = 'Edição de Tipo';
   }
