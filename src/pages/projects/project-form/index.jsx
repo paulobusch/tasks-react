@@ -17,7 +17,7 @@ class ProjectForm extends FormBase {
   fields() {
     return ( 
       <Fragment>
-        <Field type="text" name="name" label="Nome:" placeholder="Informe o nome"
+        <Field type="text" name="name" label="Nome" placeholder="Informe o nome"
           component={ Input } validate={ required }/>
       </Fragment>     
     );

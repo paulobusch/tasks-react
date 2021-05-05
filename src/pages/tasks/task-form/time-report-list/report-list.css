@@ -1,0 +1,15 @@
+.time-report-list {
+  margin-top: 15px;
+}
+
+.time-report-list .form-group {
+  margin: 0;
+}
+
+.time-report-list td.cell-actions {
+  height: 65px;
+}
+
+.time-report-list td.cell-actions i {
+  padding: 10px 15px;
+}

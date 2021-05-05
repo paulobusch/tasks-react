@@ -14,3 +14,12 @@ td.cell-actions {
   display: flex;
   justify-content: space-around;
 }
+
+td.cell-actions i {
+  opacity: .8;
+  transition: .2s;
+}
+
+td.cell-actions i:hover {
+  opacity: 1;
+}

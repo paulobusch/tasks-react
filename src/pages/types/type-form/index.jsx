@@ -18,7 +18,7 @@ class TypeForm extends FormBase {
   fields() {
     return ( 
       <div className="row">
-        <Field type="text" name="name" label="Nome:" placeholder="Informe o nome"
+        <Field type="text" name="name" label="Nome" placeholder="Informe o nome"
           className="col-sm-12 col-md-6" component={ Input } validate={ required }/>
         <Field type="checkbox" name="descriptionRequired" label="Descrição Obrigatória"
           className="col-sm-12 col-md-6" component={ Checkbox }/>

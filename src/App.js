@@ -11,6 +11,7 @@ import TypeForm from './pages/types/type-form/index';
 import ProjectList from './pages/projects/project-list/index';
 import ProjectForm from './pages/projects/project-form/index';
 import TaskList from './pages/tasks/task-list/index';
+import TaskForm from './pages/tasks/task-form';
 
 export default function App() {
   return (
@@ -20,6 +21,8 @@ export default function App() {
         <Route exact path="/dashboard" component={ Dashboard }/>
         <Route exact path="/ranking" component={ Blank }/>
         <Route exact path="/tasks" component={ TaskList }/>
+        <Route exact path="/tasks/new" component={ TaskForm }/>
+        <Route exact path="/tasks/edit/:id" component={ TaskForm }/>
         <Route exact path="/types" component={ TypeList }/>
         <Route exact path="/types/new" component={ TypeForm }/>
         <Route exact path="/types/edit/:id" component={ TypeForm }/>
