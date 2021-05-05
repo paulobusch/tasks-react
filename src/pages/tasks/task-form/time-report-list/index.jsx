@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import TimeStartAt from './time-start-at';
 import TimeEndAt from './time-end-at';
 import Table from './../../../../common/table/index';
+import { sumTimeReports } from './../../../../store/tasks/task-actions';
 
 class TimeReportList extends Component {
   constructor(props) {
@@ -25,15 +26,19 @@ class TimeReportList extends Component {
     this.tableActions = [
       { icon: 'trash-alt', title: 'Remover', color: 'red', click: this.remove, show: report => !this.isMainReport(report) }
     ];
-    
+
     const { rows } = this.props;
     if (!rows.some(report => !report.startAt || !report.endAt))
       rows.push({ startAt: '', endAt: '' });
-
+    
+    const total = sumTimeReports(rows);
     return (
       <div className="time-report-list col-12">
         <fieldset>
-          <legend>Horas Reportadas</legend>
+          <div className="d-flex justify-content-between">
+            <h4>Horas Reportadas</h4>
+            { total && <h4>Total: { total }</h4> }
+          </div>
           <Table rows={ rows } columns={ this.tableColumns } actions={ this.tableActions }/>
         </fieldset>
       </div>
