@@ -19,7 +19,7 @@ class TaskForm extends FormBase {
     
     if (!this.id) {
       this.props.initialize({ 
-        project: null,
+        project: this.props.preferences.project,
         type: null,
         description: '',
         timeReports: [],
@@ -76,6 +76,7 @@ const mapStateToProps = state => {
   const type = selector(state, 'type');
   const types = (state.types || []);
   return ({ 
+    preferences: state.preferences,
     types: types.map(p => p.name),
     projects: (state.projects || []).map(p => p.name),
     descriptionRequired: types.some(t => t.name === type) 

@@ -1,8 +1,16 @@
 import ActionsBase from '../actions-base';
+import { setProject } from './../preferences/preference-actions';
 
 class ProjectActions extends ActionsBase {
   constructor() {
     super('projects', 'PROJECT', 'project-form');
+  }
+
+  create(data, completed) {
+    return [
+      setProject(data.name),
+      super.create(data, completed)
+    ];
   }
 }
 

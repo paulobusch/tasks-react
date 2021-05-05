@@ -1,9 +1,29 @@
 import ActionsBase from '../actions-base';
 import { toastr } from 'react-redux-toastr';
+import { setProject } from './../preferences/preference-actions';
 
 class TaskActions extends ActionsBase {
   constructor() {
     super('tasks', 'TASK', 'task-form');
+  }
+
+  create(data, completed) {
+    const task = this.mapTask(data);
+    return [
+      setProject(task.project),
+      super.create(task, completed)
+    ];
+  }
+
+  update(data, completed) {
+    const task = this.mapTask(data);
+    return super.update(task, completed);
+  }
+
+  mapTask(data) {
+    data.timeReports = data.timeReports || [];
+    data.timeReports = data.timeReports.filter(r => r.startAt || r.endAt);
+    return data;
   }
   
   changeStatus(values, status, completed) {
