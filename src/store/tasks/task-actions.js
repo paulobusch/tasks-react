@@ -3,10 +3,13 @@ import moment from 'moment';
 
 import ActionsBase from '../actions-base';
 import { setProject } from './../preferences/preference-actions';
+import { TASK_PLANNED, TASK_WORKING, TASK_FINISHED } from './task-status';
 
 class TaskActions extends ActionsBase {
   constructor() {
     super('tasks', 'TASK', 'task-form');
+
+    this.format = 'HH:mm';
   }
 
   create(data, completed) {
@@ -22,6 +25,31 @@ class TaskActions extends ActionsBase {
     return super.update(task, completed);
   }
 
+  planned(data, completed) {
+    data.status = TASK_PLANNED;
+    return this.updateWithoutMessage(data, completed);
+  }
+
+  startWork(data, completed) {
+    data.status = TASK_WORKING;
+    data.timeReports = data.timeReports || [];
+    const report = data.timeReports.find(r => !r.startAt || !r.endAt);
+    const time = moment().format(this.format);
+    if (report) report.startAt = time;
+    else data.timeReports.push({ startAt: time });
+    return this.updateWithoutMessage(this.mapTask(data), completed);
+  }
+
+  endWork(data, completed) {
+    data.status = TASK_FINISHED;
+    data.timeReports = data.timeReports || [];
+    const report = data.timeReports.find(r => !r.startAt || !r.endAt);
+    const time = moment().format(this.format);
+    if (report) report.endAt = time;
+    else data.timeReports.push({ endAt: time });
+    return this.updateWithoutMessage(this.mapTask(data), completed);
+  }
+
   mapTask(data) {
     data.timeReports = data.timeReports || [];
     data.timeReports = data.timeReports.filter(r => r.startAt || r.endAt);
@@ -29,20 +57,17 @@ class TaskActions extends ActionsBase {
     return data;
   }
   
-  changeStatus(values, status, completed) {
+  updateWithoutMessage(values, completed) {
     return dispatch => {
       this.getCollection()
         .doc(values.id)
-        .update({ status })
+        .update(values)
         .then(() => {
-          dispatch({
-            type: `${this.prefixType}_UPDATED`, 
-            payload: { ...values, status } 
-          });
+          dispatch({ type: `${this.prefixType}_UPDATED`, payload: values });
           if (completed) completed(true);
         })
         .catch((error) => {
-          toastr.error('Erro', `Falha ao atualizar status!`);
+          toastr.error('Erro', `Falha ao atualizar registro!`);
           if (completed) completed(false);
           throw error;
         });
@@ -71,7 +96,9 @@ export function submitForm() { return actionsInstance.submitForm(); }
 export function getAll(filters, completed) { return actionsInstance.getAll(filters, completed); }
 export function getById(id, completed) { return actionsInstance.getById(id, completed); }
 export function loadForm(id, completed) { return actionsInstance.loadForm(id, completed); }
-export function changeStatus(data, status, completed) { return actionsInstance.changeStatus(data, status, completed); }
+export function planned(data, completed) { return actionsInstance.planned(data, completed); }
+export function startWork(data, completed) { return actionsInstance.startWork(data, completed); }
+export function endWork(data, completed) { return actionsInstance.endWork(data, completed); }
 export function create(data, completed) { return actionsInstance.create(data, completed); }
 export function update(data, completed) { return actionsInstance.update(data, completed); }
 export function remove(data, completed) { return actionsInstance.remove(data, completed); }

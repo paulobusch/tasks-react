@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { getAll, changeStatus, remove } from '../../../store/tasks/task-actions';
 import ListBase from '../../../common/list-base';
 import { TASK_WORKING, TASK_FINISHED, TASK_PLANNED } from './../../../store/tasks/task-status';
+import { getAll, startWork, endWork, remove } from '../../../store/tasks/task-actions';
 
 class TaskList extends ListBase {
   constructor(props) {
@@ -23,19 +23,21 @@ class TaskList extends ListBase {
   }
 
   configure() {
+    const { startWork, endWork } = this.props;
+
     this.actionsCount = 2;
     this.tableActions = [
       { icon: 'play', title: 'Iniciar', color: 'var(--primary)', 
         show: task => task.status === TASK_PLANNED, 
-        click: task => this.changeStatus(task, TASK_WORKING) 
+        click: task => startWork(task, this.afterChangeStatus)
       },
       { icon: 'check', title: 'Finalizar', color: 'green', 
         show: task => task.status === TASK_WORKING, 
-        click: task => this.changeStatus(task, TASK_FINISHED) 
+        click: task => endWork(task, this.afterChangeStatus)
       },
       { icon: 'undo', title: 'Restaurar', color: 'orange', 
         show: task => task.status === TASK_FINISHED, 
-        click: task => this.changeStatus(task, TASK_WORKING) 
+        click: task => startWork(task, this.afterChangeStatus)
       },
       { icon: 'trash-alt', title: 'Remover', color: 'red', click: this.remove.bind(this) }
     ];
@@ -48,5 +50,5 @@ class TaskList extends ListBase {
 }
 
 const mapStateToProps = state => ({ list: state.tasks });
-const mapDispatchToProps = dispatch => bindActionCreators({ getAll, changeStatus, remove }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ getAll, startWork, endWork, remove }, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(TaskList);
