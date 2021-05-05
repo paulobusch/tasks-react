@@ -31,7 +31,7 @@ class TimeReportList extends Component {
       rows.push({ startAt: '', endAt: '' });
 
     return (
-      <div className="time-report-list col-sm-12 col-md-6">
+      <div className="time-report-list col-12">
         <fieldset>
           <legend>Horas Reportadas</legend>
           <Table rows={ rows } columns={ this.tableColumns } actions={ this.tableActions }/>

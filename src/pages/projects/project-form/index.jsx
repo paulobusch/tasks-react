@@ -16,10 +16,10 @@ class ProjectForm extends FormBase {
 
   fields() {
     return ( 
-      <Fragment>
+      <div className="row">
         <Field type="text" name="name" label="Nome" placeholder="Informe o nome"
-          component={ Input } validate={ required }/>
-      </Fragment>     
+          className="col-sm-12 col-md-6" component={ Input } validate={ required }/>
+      </div> 
     );
   }
 }

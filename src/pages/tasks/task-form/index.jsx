@@ -11,17 +11,25 @@ import Select from './../../../common/fields/select/index';
 import { Fragment } from 'react';
 import Input from './../../../common/fields/input/index';
 import TimeReportList from './time-report-list/index';
+import { TASK_PLANNED } from './../../../store/tasks/task-status';
 
 class TaskForm extends FormBase {
   constructor(props) {
     super(props);
     
     if (!this.id) {
-      this.props.initialize({ project: null });
+      this.props.initialize({ 
+        project: null,
+        type: null,
+        description: '',
+        timeReports: [],
+        status: TASK_PLANNED
+      });
     }
   }
 
   componentWillMount() {
+    super.componentWillMount();
     this.props.getAllTypes();
     this.props.getAllProjects();
   }
@@ -41,17 +49,21 @@ class TaskForm extends FormBase {
     return ( 
       <Fragment>
         <div className="row">
-          <Field name="project" label="Projeto" options={ projects }
-            className="col-sm-12 col-md-6" component={ Select } validate={ required }/>
-          <Field name="type" label="Tipo" options={ types }
-            className="col-sm-12 col-md-6" component={ Select } validate={ required }/>
-        </div>
-        <div className="row">
-          <Field name="description" label="Descrição" placeholder="Informe a descrição"
-            className="col-12" component={ Input } validate={ descriptionValidators }/>
-        </div>
-        <div className="row">
-          <TimeReportList formId="task-form" rows={ timeReports }/>
+          <div className="col-sm-12 col-md-6">
+            <div className="row">
+              <Field name="project" label="Projeto" options={ projects }
+                className="col-sm-12 col-md-6" component={ Select } validate={ required }/>
+              <Field name="type" label="Tipo" options={ types }
+                className="col-sm-12 col-md-6" component={ Select } validate={ required }/>
+            </div>
+            <div className="row">
+              <Field name="description" label="Descrição" placeholder="Informe a descrição"
+                className="col-12" component={ Input } validate={ descriptionValidators }/>
+            </div>
+          </div>
+          <div className="col-sm-12 col-md-6">
+            <TimeReportList formId="task-form" rows={ timeReports }/>
+          </div>
         </div>
       </Fragment>
     );
