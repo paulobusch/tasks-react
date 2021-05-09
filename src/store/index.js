@@ -13,11 +13,13 @@ import ProjectsReducer from './projects/project-reducer';
 import TasksReducer from './tasks/task-reducer';
 import PreferenceReducer from './preferences/preference-reducer';
 import DashboardReducer from './dashboard/dashboard-reducer';
+import RankingReducer from './ranking/ranking-reducer';
 
 const store = combineReducers({
   toastr: toastrReducer,
   form: formReducer,
   dashboard: DashboardReducer,
+  ranking: RankingReducer,
   preferences: PreferenceReducer,
   auth: authReducer,
   types: TypesReducer,
