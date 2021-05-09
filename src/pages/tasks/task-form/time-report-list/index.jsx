@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import TimeStartAt from './time-start-at';
 import TimeEndAt from './time-end-at';
 import Table from './../../../../common/table/index';
-import { sumTimeReports } from './../../../../store/tasks/task-actions';
+import { totalReportHoursFormatted } from './../../../../store/tasks/task-actions';
 
 class TimeReportList extends Component {
   constructor(props) {
@@ -31,7 +31,7 @@ class TimeReportList extends Component {
     if (!rows.some(report => !report.startAt || !report.endAt))
       rows.push({ startAt: '', endAt: '' });
     
-    const total = sumTimeReports(rows);
+    const total = totalReportHoursFormatted(rows);
     return (
       <div className="time-report-list col-12">
         <fieldset>

@@ -53,7 +53,7 @@ class TaskActions extends ActionsBase {
   mapTask(data) {
     data.timeReports = data.timeReports || [];
     data.timeReports = data.timeReports.filter(r => r.startAt || r.endAt);
-    data.duration = this.sumTimeReports(data.timeReports);
+    data.duration = this.totalReportHoursFormatted(data.timeReports);
     return data;
   }
   
@@ -74,19 +74,23 @@ class TaskActions extends ActionsBase {
     };
   }
 
-  sumTimeReports(reports) {
+  totalReportHoursFormatted(reports) {
     const format = 'HH:mm';
-    const duration = reports
+    const hours = this.sumReportHours(reports);  
+    return moment.utc(hours*3600*1000).format(format);
+  }
+
+  sumReportHours(reports) {
+    const format = 'HH:mm';
+    return reports
       .filter(r => r.startAt && r.endAt)
       .map(r => {
         const startAt = moment(r.startAt, format);
         const endAt = moment(r.endAt, format);
         if (!startAt.isValid() || !endAt.isValid()) return 0;
-        return endAt.diff(startAt);
+        return moment.duration(endAt.diff(startAt)).asHours();
       })
       .reduce((s, i) => s + i, 0);
-    if (duration === 0) return false;
-    return moment.utc(duration).format(format);
   }
 }
 
@@ -102,4 +106,5 @@ export function endWork(data, completed) { return actionsInstance.endWork(data, 
 export function create(data, completed) { return actionsInstance.create(data, completed); }
 export function update(data, completed) { return actionsInstance.update(data, completed); }
 export function remove(data, completed) { return actionsInstance.remove(data, completed); }
-export function sumTimeReports(reports) { return actionsInstance.sumTimeReports(reports); }
+export function sumReportHours(reports) { return actionsInstance.sumReportHours(reports); }
+export function totalReportHoursFormatted(reports) { return actionsInstance.totalReportHoursFormatted(reports); }

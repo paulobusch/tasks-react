@@ -12,10 +12,12 @@ import TypesReducer from './types/type-reducer';
 import ProjectsReducer from './projects/project-reducer';
 import TasksReducer from './tasks/task-reducer';
 import PreferenceReducer from './preferences/preference-reducer';
+import DashboardReducer from './dashboard/dashboard-reducer';
 
 const store = combineReducers({
   toastr: toastrReducer,
   form: formReducer,
+  dashboard: DashboardReducer,
   preferences: PreferenceReducer,
   auth: authReducer,
   types: TypesReducer,

@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Redirect, Route } from 'react-router-dom';
 import Login from './auth/login';
 import store from './store';
 import Dashboard from './pages/dashboard/index';
-import Blank from './pages/blank';
+import Ranking from './pages/ranking/index';
 import TypeList from './pages/types/type-list/index';
 import TypeForm from './pages/types/type-form/index';
 import ProjectList from './pages/projects/project-list/index';
@@ -19,7 +19,7 @@ export default function App() {
       <Router>
         <Route exact path="/login" component={ Login }/>
         <Route exact path="/dashboard" component={ Dashboard }/>
-        <Route exact path="/ranking" component={ Blank }/>
+        <Route exact path="/ranking" component={ Ranking }/>
         <Route exact path="/tasks" component={ TaskList }/>
         <Route exact path="/tasks/new" component={ TaskForm }/>
         <Route exact path="/tasks/edit/:id" component={ TaskForm }/>
