@@ -3,9 +3,10 @@ import _ from 'lodash';
 import { sumReportHours } from '../../tasks/task-actions';
 
 export default function getProjectYear(tasks) {
+  const now = new Date();
   const tasksFiltred = tasks
     .filter(task => {
-      return moment(task.createdAt).endOf('month').subtract(12, 'month');
+      return moment(task.createdAt).add(12, 'month').isAfter(now, 'month');
     })
     .map(task => {
       return { 

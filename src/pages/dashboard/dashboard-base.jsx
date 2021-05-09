@@ -3,10 +3,11 @@ import React, { Component } from 'react';
 import { Chart } from 'highcharts';
 
 export default class DashboardBase extends Component {
-  constructor(props, id, title) {
+  constructor(props, id, title, type) {
     super(props);
     this.id = id;
     this.title = title;
+    this.type = type;
   }
 
   render() {
@@ -22,7 +23,7 @@ export default class DashboardBase extends Component {
       this.id,
       {
         chart: {
-          type: 'column'
+          type: this.type
         },
         title: {
           text: this.title

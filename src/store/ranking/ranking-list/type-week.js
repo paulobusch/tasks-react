@@ -3,9 +3,10 @@ import _ from 'lodash';
 import { sumReportHours } from './../../tasks/task-actions';
 
 export default function getTypeWeek(tasks) {
+  const now = new Date();
   const tasksFiltred = tasks
     .filter(task => {
-      return moment(task.createdAt).endOf('day').subtract(7, 'day');
+      return moment(task.createdAt).add(7, 'day').isAfter(now, 'day');
     })
     .map(task => {
       return { 

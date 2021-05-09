@@ -1,4 +1,3 @@
-import moment from 'moment';
 import _ from 'lodash';
 import { sumReportHours } from './../../tasks/task-actions';
 
@@ -12,20 +11,20 @@ export default function getProjectType(tasks) {
       };
     });
 
-  const tasksByTypeGroup = _.groupBy(tasksFiltred, 'type');
   const tasksByProjectGroup = _.groupBy(tasksFiltred, 'project');
+  const tasksByTypeGroup = _.groupBy(tasksFiltred, 'type');
   const result = {
-    categories: Object.keys(tasksByTypeGroup),
+    categories: Object.keys(tasksByProjectGroup),
     series: []
   };
 
-  for (const project of Object.keys(tasksByProjectGroup)) {
-    const tasksByProject = tasksByProjectGroup[project];
-    const serie = { name: project, data: [] };
+  for (const type of Object.keys(tasksByTypeGroup)) {
+    const tasksByType = tasksByTypeGroup[type];
+    const serie = { name: type, data: [] };
     
-    for (const type of result.categories) {
-      const tasksByType = tasksByProject.filter(t => t.type === type);
-      const hours = tasksByType.map(t => t.duration).reduce((s, c) => s + c, 0);
+    for (const project of result.categories) {
+      const tasksByProject = tasksByType.filter(t => t.project === project);
+      const hours = tasksByProject.map(t => t.duration).reduce((s, c) => s + c, 0);
       serie.data.push(parseFloat(hours.toFixed(1)));
     }
 
